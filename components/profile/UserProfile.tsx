@@ -2,10 +2,10 @@ import { memo } from 'react';
 
 import ProfileForm from './ProfileForm';
 
-import classes from './styles/ProfileForm.module.scss';
+import styles from './styles/ProfileForm.module.scss';
 
 const UserProfile = () => (
-  <section className={classes.profile}>
+  <section className={styles.profile}>
     <h1>Your User Profile</h1>
     <ProfileForm />
   </section>

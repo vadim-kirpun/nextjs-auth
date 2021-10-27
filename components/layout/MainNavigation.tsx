@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import Link from 'next/link';
 
-import classes from './styles/MainNavigation.module.scss';
+import styles from './styles/MainNavigation.module.scss';
 
 const MainNavigation = () => (
-  <header className={classes.header}>
+  <header className={styles.header}>
     <Link href='/'>
       <a>
-        <div className={classes.logo}>Next Auth</div>
+        <div className={styles.logo}>Next Auth</div>
       </a>
     </Link>
 

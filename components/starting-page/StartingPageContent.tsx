@@ -1,9 +1,9 @@
 import { memo } from 'react';
 
-import classes from './starting-page.module.css';
+import styles from './StartingPageContent.module.scss';
 
 const StartingPageContent = () => (
-  <section className={classes.starting}>
+  <section className={styles.starting}>
     <h1>Welcome on Board!</h1>
   </section>
 );

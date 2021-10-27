@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 
-import classes from './AuthForm.module.scss';
+import styles from './AuthForm.module.scss';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -10,30 +10,30 @@ const AuthForm = () => {
   };
 
   return (
-    <section className={classes.auth}>
+    <section className={styles.auth}>
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
 
       <form>
-        <div className={classes.control}>
+        <div className={styles.control}>
           <label htmlFor='email'>
             Your Email
             <input type='email' id='email' required />
           </label>
         </div>
 
-        <div className={classes.control}>
+        <div className={styles.control}>
           <label htmlFor='password'>
             Your Password
             <input type='password' id='password' required />
           </label>
         </div>
 
-        <div className={classes.actions}>
+        <div className={styles.actions}>
           <button type='submit'>{isLogin ? 'Login' : 'Create Account'}</button>
 
           <button
             type='button'
-            className={classes.toggle}
+            className={styles.toggle}
             onClick={switchAuthModeHandler}
           >
             {isLogin ? 'Create new account' : 'Login with existing account'}
