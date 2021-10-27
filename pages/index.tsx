@@ -1,5 +1,5 @@
-import type { NextPage } from 'next';
+import { StartingPageContent } from '@components';
 
-const Home: NextPage = () => <div />;
+const Home = () => <StartingPageContent />;
 
 export default Home;

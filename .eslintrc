@@ -32,7 +32,8 @@
           ["/^react/", "/^next/"],
           "module",
           "/^@.*/",
-          ["parent", "sibling", "index"]
+          ["parent", "sibling", "index"],
+          "/.scss$/"
         ]
       }
     ]
