@@ -1,0 +1,40 @@
+{
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:@next/next/recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["eslint-plugin-import-helpers"],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "import-helpers/order-imports": [
+      "error",
+      {
+        "newlinesBetween": "always",
+        "groups": [
+          ["/^react/", "/^next/"],
+          "module",
+          "/^@.*/",
+          ["parent", "sibling", "index"]
+        ]
+      }
+    ]
+  }
+}
