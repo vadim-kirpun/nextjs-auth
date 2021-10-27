@@ -1,30 +1,76 @@
-import { memo, useState } from 'react';
+import { memo, useRef, useState } from 'react';
+import type { FormEvent } from 'react';
+
+import axios from 'axios';
 
 import styles from './AuthForm.module.scss';
+
+type ErrorResponse = {
+  data: { message: string };
+};
+
+const createUser = async (email: string, password: string) => {
+  try {
+    const { data } = await axios.post('/api/auth/signup', { email, password });
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error((error.response as ErrorResponse).data.message);
+    }
+  }
+
+  return null;
+};
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
 
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
+  };
+
+  const onSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+
+    if (!emailInputRef.current || !passwordInputRef.current) {
+      return;
+    }
+
+    const email = emailInputRef.current.value;
+    const password = passwordInputRef.current.value;
+
+    if (isLogin) {
+      // log user in
+    } else {
+      const result = await createUser(email, password);
+      console.log('%c result =', 'color: lightblue', result);
+    }
   };
 
   return (
     <section className={styles.auth}>
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
 
-      <form>
+      <form onSubmit={onSubmit}>
         <div className={styles.control}>
           <label htmlFor='email'>
             Your Email
-            <input type='email' id='email' required />
+            <input ref={emailInputRef} type='email' id='email' required />
           </label>
         </div>
 
         <div className={styles.control}>
           <label htmlFor='password'>
             Your Password
-            <input type='password' id='password' required />
+            <input
+              ref={passwordInputRef}
+              type='password'
+              id='password'
+              required
+            />
           </label>
         </div>
 
