@@ -1,4 +1,5 @@
 import { memo, useRef, useState } from 'react';
+import { signin } from 'next-auth/client';
 import type { FormEvent } from 'react';
 
 import axios from 'axios';
@@ -43,7 +44,13 @@ const AuthForm = () => {
     const password = passwordInputRef.current.value;
 
     if (isLogin) {
-      // log user in
+      const signInData = {
+        email,
+        password,
+        redirect: false,
+      };
+
+      await signin('credentials', signInData);
     } else {
       const result = await createUser(email, password);
       console.log('%c result =', 'color: lightblue', result);
