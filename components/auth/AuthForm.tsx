@@ -1,5 +1,5 @@
 import { memo, useRef, useState } from 'react';
-import { signIn } from 'next-auth/client';
+import { signIn } from 'next-auth/react';
 import type { FormEvent } from 'react';
 
 import axios from 'axios';

@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import Link from 'next/link';
-import { useSession, signOut } from 'next-auth/client';
+import { useSession, signOut } from 'next-auth/react';
 
 import styles from './styles/MainNavigation.module.scss';
 
 const MainNavigation = () => {
-  const [session] = useSession();
+  const { data } = useSession();
 
   return (
     <header className={styles.header}>
@@ -17,13 +17,13 @@ const MainNavigation = () => {
 
       <nav>
         <ul>
-          {!session && (
+          {!data && (
             <li>
               <Link href='/auth'>Login</Link>
             </li>
           )}
 
-          {session && (
+          {data && (
             <>
               <li>
                 <Link href='/profile'>Profile</Link>

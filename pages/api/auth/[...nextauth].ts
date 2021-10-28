@@ -1,23 +1,19 @@
 import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { connectToDB, verifyPassword } from '@lib';
-
-type Credentials = {
-  email: string;
-  password: string;
-};
 
 export default NextAuth({
   session: { jwt: true },
   providers: [
-    Providers.Credentials({
-      async authorize(credentials: Credentials) {
+    CredentialsProvider({
+      credentials: undefined,
+      async authorize(credentials) {
         const { client, db } = await connectToDB();
 
         const user = await db
           .collection('users')
-          .findOne<Credentials>({ email: credentials.email });
+          .findOne({ email: credentials.email });
 
         if (!user) throw new Error('No user found!');
 
