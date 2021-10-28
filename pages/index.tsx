@@ -1,5 +1,5 @@
 import { StartingPageContent } from '@components';
 
-const Home = () => <StartingPageContent />;
+const Home = (): JSX.Element => <StartingPageContent />;
 
 export default Home;

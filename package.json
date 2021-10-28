@@ -7,14 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --fix .",
+    "lint-styles": "stylelint \"**/*.scss\"",
     "format": "prettier --write .",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
+    "*.{ts,tsx}": "eslint --fix",
+    "*.{scss}": "stylelint --fix",
+    "*.{ts,tsx,scss}": "prettier --write"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -46,6 +46,8 @@
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
-    "typescript": "4.4.4"
+    "stylelint": "^14.0.1",
+    "stylelint-config-standard-scss": "^2.0.0",
+    "typescript": "4.3.5"
   }
 }

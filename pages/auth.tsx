@@ -1,5 +1,5 @@
 import { AuthForm } from '@components';
 
-const AuthPage = () => <AuthForm />;
+const AuthPage = (): JSX.Element => <AuthForm />;
 
 export default AuthPage;
