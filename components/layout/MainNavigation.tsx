@@ -1,32 +1,47 @@
 import { memo } from 'react';
 import Link from 'next/link';
+import { useSession } from 'next-auth/client';
 
 import styles from './styles/MainNavigation.module.scss';
 
-const MainNavigation = () => (
-  <header className={styles.header}>
-    <Link href='/'>
-      <a>
-        <div className={styles.logo}>Next Auth</div>
-      </a>
-    </Link>
+const MainNavigation = () => {
+  const [session] = useSession();
 
-    <nav>
-      <ul>
-        <li>
-          <Link href='/auth'>Login</Link>
-        </li>
+  const logoutHandler = () => {};
 
-        <li>
-          <Link href='/profile'>Profile</Link>
-        </li>
+  return (
+    <header className={styles.header}>
+      <Link href='/'>
+        <a>
+          <div className={styles.logo}>Next Auth</div>
+        </a>
+      </Link>
 
-        <li>
-          <button type='button'>Logout</button>
-        </li>
-      </ul>
-    </nav>
-  </header>
-);
+      <nav>
+        <ul>
+          {!session && (
+            <li>
+              <Link href='/auth'>Login</Link>
+            </li>
+          )}
+
+          {session && (
+            <>
+              <li>
+                <Link href='/profile'>Profile</Link>
+              </li>
+
+              <li>
+                <button type='button' onClick={logoutHandler}>
+                  Logout
+                </button>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
 export default memo(MainNavigation);
