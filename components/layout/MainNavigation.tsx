@@ -1,13 +1,11 @@
 import { memo } from 'react';
 import Link from 'next/link';
-import { useSession } from 'next-auth/client';
+import { useSession, signOut } from 'next-auth/client';
 
 import styles from './styles/MainNavigation.module.scss';
 
 const MainNavigation = () => {
   const [session] = useSession();
-
-  const logoutHandler = () => {};
 
   return (
     <header className={styles.header}>
@@ -32,7 +30,7 @@ const MainNavigation = () => {
               </li>
 
               <li>
-                <button type='button' onClick={logoutHandler}>
+                <button type='button' onClick={() => signOut()}>
                   Logout
                 </button>
               </li>
