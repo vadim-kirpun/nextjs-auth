@@ -1,6 +1,7 @@
 import { memo, useRef, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import type { FormEvent } from 'react';
+import { useRouter } from 'next/router';
 
 import axios from 'axios';
 
@@ -29,6 +30,8 @@ const AuthForm = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
+  const router = useRouter();
+
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
@@ -50,10 +53,11 @@ const AuthForm = () => {
         redirect: false,
       };
 
-      await signIn('credentials', signInData);
+      const result = await signIn('credentials', signInData);
+
+      if (!result?.error) await router.replace('/');
     } else {
-      const result = await createUser(email, password);
-      console.log('%c result =', 'color: lightblue', result);
+      await createUser(email, password);
     }
   };
 
