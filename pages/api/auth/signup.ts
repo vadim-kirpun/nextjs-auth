@@ -20,6 +20,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const { client, db } = await connectToDB();
 
+  const existingUser = await db.collection('users').findOne({ email });
+
+  if (existingUser) {
+    res.status(422).json({ message: 'User already exists!' });
+    await client.close();
+    return;
+  }
+
   const hashedPassword = await hashPassword(password);
 
   await db.collection('users').insertOne({
