@@ -11,13 +11,13 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (session) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/profile',
         permanent: false,
       },
     };
   }
 
-  return { props: {} };
+  return { props: { session } };
 };
 
 export default AuthPage;

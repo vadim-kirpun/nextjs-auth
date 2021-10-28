@@ -17,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     };
   }
 
-  return { props: {} };
+  return { props: { session } };
 };
 
 export default ProfilePage;
