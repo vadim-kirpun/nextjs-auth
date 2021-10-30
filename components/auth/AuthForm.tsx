@@ -95,6 +95,10 @@ const AuthForm = () => {
           >
             {isLogin ? 'Create new account' : 'Login with existing account'}
           </button>
+
+          <button type='button' onClick={() => signIn('google')}>
+            Sign in with Google
+          </button>
         </div>
       </form>
     </section>

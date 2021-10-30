@@ -1,4 +1,5 @@
 import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { connectToDB, verifyPassword } from '@lib';
@@ -6,6 +7,10 @@ import { connectToDB, verifyPassword } from '@lib';
 export default NextAuth({
   session: { jwt: true },
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
     CredentialsProvider({
       credentials: undefined,
       async authorize(credentials) {
